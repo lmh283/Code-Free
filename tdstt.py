@@ -154,7 +154,11 @@ if (chnick['success'] == 200):
                     for i in range(delay,-1,-1):
                         print(xlacay+'VUI LÒNG CHỜ '+do+str(i)+xlacay+" GIÂY     ",end="\r")
                         time.sleep(1)
-                    duyetxu = requests.post('https://traodoisub.com/api/coin/?type=TIKTOK_LIKE_CACHE&id='+id+'&access_token='+token).json()
+                    try:
+                        duyetxu = requests.post('https://traodoisub.com/api/coin/?type=TIKTOK_LIKE_CACHE&id='+id+'&access_token='+token).json()
+                    except:
+                        time.sleep(1)
+                        duyetxu = requests.post('https://traodoisub.com/api/coin/?type=TIKTOK_LIKE_CACHE&id='+id+'&access_token='+token).json()
                     t = t + 1
                     now = datetime.now()
                     current_time = now.strftime("%H:%M:%S")
@@ -201,7 +205,11 @@ if (chnick['success'] == 200):
                     for i in range(delay,-1,-1):
                         print(xlacay+'VUI LÒNG CHỜ '+do+str(i)+xlacay+" GIÂY     ",end="\r")
                         time.sleep(1)
-                    duyetxu = requests.post('https://traodoisub.com/api/coin/?type=TIKTOK_FOLLOW_CACHE&id='+id+'&access_token='+token).json()
+                    try:
+                        duyetxu = requests.post('https://traodoisub.com/api/coin/?type=TIKTOK_LIKE_CACHE&id='+id+'&access_token='+token).json()
+                    except:
+                        time.sleep(1)
+                        duyetxu = requests.post('https://traodoisub.com/api/coin/?type=TIKTOK_LIKE_CACHE&id='+id+'&access_token='+token).json()
                     t = t + 1
                     now = datetime.now()
                     current_time = now.strftime("%H:%M:%S")
