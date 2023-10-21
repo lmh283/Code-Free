@@ -194,7 +194,7 @@ if (chnick['success'] == 200):
                 try:
                     list = len(getjob['data'])
                 except:
-                    getjob = requests.get('https://traodoisub.com/api/?fields=tiktok_like&access_token='+token,headers=head).json()
+                    getjob = requests.get('https://traodoisub.com/api/?fields=tiktok_follow&access_token='+token,headers=head).json()
                     list = len(getjob['data'])
                 for i in range(list):
                     id = getjob['data'][i]['id']
@@ -206,10 +206,10 @@ if (chnick['success'] == 200):
                         print(xlacay+'VUI LÒNG CHỜ '+do+str(i)+xlacay+" GIÂY     ",end="\r")
                         time.sleep(1)
                     try:
-                        duyetxu = requests.post('https://traodoisub.com/api/coin/?type=TIKTOK_LIKE_CACHE&id='+id+'&access_token='+token).json()
+                        duyetxu = requests.post('https://traodoisub.com/api/coin/?type=TIKTOK_FOLLOW_CACHE&id='+id+'&access_token='+token).json()
                     except:
                         time.sleep(1)
-                        duyetxu = requests.post('https://traodoisub.com/api/coin/?type=TIKTOK_LIKE_CACHE&id='+id+'&access_token='+token).json()
+                        duyetxu = requests.post('https://traodoisub.com/api/coin/?type=TIKTOK_FOLLOW_CACHE&id='+id+'&access_token='+token).json()
                     t = t + 1
                     now = datetime.now()
                     current_time = now.strftime("%H:%M:%S")
