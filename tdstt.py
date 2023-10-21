@@ -127,13 +127,17 @@ if (chnick['success'] == 200):
     time.sleep(1)
     t = 0
     loi = 0
+    print(vang+"═══════════════════════════════════════════════════════════════════════")
+    try:
+        getxu = requests.post("https://traodoisub.com/api/coin/?type=TIKTOK_FOLLOW&id=TIKTOK_FOLLOW_API&access_token="+token).json()
+        tongxu = tongxu + int((getxu['data']['msg'].split('+')[1]).split(' Xu')[0])
+        print(xlacay+"═══════════════════════════════════════════════════════════════════════")
+        print(syan+"ĐANG AUTO TIKTOK: "+trang+uniqueID+xlacay+" ║ "+trang+str(getxu['data']['msg'])+xlacay+" ║ "+syan+"TOTAL: "+vang+str(tongxu)+xlacay+" ║ "+syan+"TỔNG XU: "+trang+str(getxu['data']['xu']))
+        print(xlacay+"═══════════════════════════════════════════════════════════════════════")
+    except:
+        print(syan+'ĐANG LẤY NHIỆM VỤ        ',end='\r')
     while True:
         if (nv == 1):
-            getxu = requests.post("https://traodoisub.com/api/coin/?type=TIKTOK_LIKE&id=TIKTOK_LIKE_API&access_token="+token).json()
-            tongxu = tongxu + int((getxu['data']['msg'].split('+')[1]).split(' Xu')[0])
-            print(xlacay+"═══════════════════════════════════════════════════════════════════════")
-            print(syan+"ĐANG AUTO TIKTOK: "+trang+uniqueID+xlacay+" ║ "+trang+str(getxu['data']['msg'])+xlacay+" ║ "+syan+"TOTAL: "+vang+str(tongxu)+xlacay+" ║ "+syan+"TỔNG XU: "+trang+str(getxu['data']['xu']))
-            print(xlacay+"═══════════════════════════════════════════════════════════════════════")
             getjob = requests.get('https://traodoisub.com/api/?fields=tiktok_like&access_token='+token,headers=head).json()
             try:
                 loi = getjob['fail_count']
@@ -150,6 +154,10 @@ if (chnick['success'] == 200):
                 except:
                     getjob = requests.get('https://traodoisub.com/api/?fields=tiktok_like&access_token='+token,headers=head).json()
                     list = len(getjob['data'])
+                    if (getjob == []):
+                        print(do+"TẠM THỜI HẾT JOB                        ",end="\r")
+                        time.sleep(2)
+                        continue
                 for i in range(list):
                     id = getjob['data'][i]['id']
                     link = getjob['data'][i]['link']
@@ -174,9 +182,7 @@ if (chnick['success'] == 200):
                             getxu = requests.post("https://traodoisub.com/api/coin/?type=TIKTOK_LIKE&id=TIKTOK_LIKE_API&access_token="+token).json()
                             tongxu = tongxu + int((getxu['data']['msg'].split('+')[1]).split(' Xu')[0])
                         except:
-                            time.sleep(1)
-                            getxu = requests.post("https://traodoisub.com/api/coin/?type=TIKTOK_LIKE&id=TIKTOK_LIKE_API&access_token="+token).json()
-                            tongxu = tongxu + int((getxu['data']['msg'].split('+')[1]).split(' Xu')[0])
+                            continue
                         print(xlacay+"═══════════════════════════════════════════════════════════════════════")
                         print(syan+"ĐANG AUTO TIKTOK: "+trang+uniqueID+xlacay+" ║ "+trang+str(getxu['data']['msg'])+xlacay+" ║ "+syan+"TOTAL: "+vang+str(tongxu)+xlacay+" ║ "+syan+"TỔNG XU: "+trang+str(getxu['data']['xu']))
                         print(xlacay+"═══════════════════════════════════════════════════════════════════════")
@@ -186,14 +192,7 @@ if (chnick['success'] == 200):
                     else:
                         continue
         elif (nv == 2):
-            getxu = requests.post("https://traodoisub.com/api/coin/?type=TIKTOK_FOLLOW&id=TIKTOK_FOLLOW_API&access_token="+token).json()
-            tongxu = tongxu + int((getxu['data']['msg'].split('+')[1]).split(' Xu')[0])
-            print(xlacay+"═══════════════════════════════════════════════════════════════════════")
-            print(syan+"ĐANG AUTO TIKTOK: "+trang+uniqueID+xlacay+" ║ "+trang+str(getxu['data']['msg'])+xlacay+" ║ "+syan+"TOTAL: "+vang+str(tongxu)+xlacay+" ║ "+syan+"TỔNG XU: "+trang+str(getxu['data']['xu']))
-            print(xlacay+"═══════════════════════════════════════════════════════════════════════")
-            print(syan+'ĐANG LẤY NHIỆM VỤ        ',end='\r')
             getjob = requests.get('https://traodoisub.com/api/?fields=tiktok_follow&access_token='+token,headers=head).json()
-
             try:
                 loi = getjob['fail_count']
                 if (loi == 8):
@@ -209,6 +208,10 @@ if (chnick['success'] == 200):
                 except:
                     getjob = requests.get('https://traodoisub.com/api/?fields=tiktok_follow&access_token='+token,headers=head).json()
                     list = len(getjob['data'])
+                    if (getjob == []):
+                        print(do+"TẠM THỜI HẾT JOB                        ",end="\r")
+                        time.sleep(10)
+                        continue
                 for i in range(list):
                     id = getjob['data'][i]['id']
                     link = getjob['data'][i]['link']
@@ -234,9 +237,7 @@ if (chnick['success'] == 200):
                             print(getxu)
                             tongxu = tongxu + int((getxu['data']['msg'].split('+')[1]).split(' Xu')[0])
                         except:
-                            time.sleep(1)
-                            getxu = requests.post("https://traodoisub.com/api/coin/?type=TIKTOK_FOLLOW&id=TIKTOK_FOLLOW_API&access_token="+token).json()
-                            tongxu = tongxu + int((getxu['data']['msg'].split('+')[1]).split(' Xu')[0])
+                            continue
                         print(xlacay+"═══════════════════════════════════════════════════════════════════════")
                         print(syan+"ĐANG AUTO TIKTOK: "+trang+uniqueID+xlacay+" ║ "+trang+str(getxu['data']['msg'])+xlacay+" ║ "+syan+"TOTAL: "+vang+str(tongxu)+xlacay+" ║ "+syan+"TỔNG XU: "+trang+str(getxu['data']['xu']))
                         print(xlacay+"═══════════════════════════════════════════════════════════════════════")
