@@ -144,20 +144,11 @@ if (chnick['success'] == 200):
                 if (loi == 8):
                     print(do+str(getjob['error']))
                     quit()
-            except:
                 if (getjob == []):
                     print(do+"TẠM THỜI HẾT JOB                        ",end="\r")
                     time.sleep(2)
                     continue
-                try:
-                    list = len(getjob['data'])
-                except:
-                    getjob = requests.get('https://traodoisub.com/api/?fields=tiktok_like&access_token='+token,headers=head).json()
-                    list = len(getjob['data'])
-                    if (getjob == []):
-                        print(do+"TẠM THỜI HẾT JOB                        ",end="\r")
-                        time.sleep(2)
-                        continue
+                list = len(getjob['data'])
                 for i in range(list):
                     id = getjob['data'][i]['id']
                     link = getjob['data'][i]['link']
@@ -167,22 +158,15 @@ if (chnick['success'] == 200):
                     for i in range(delay,-1,-1):
                         print(xlacay+'VUI LÒNG CHỜ '+do+str(i)+xlacay+" GIÂY     ",end="\r")
                         time.sleep(1)
-                    try:
-                        duyetxu = requests.post('https://traodoisub.com/api/coin/?type=TIKTOK_LIKE_CACHE&id='+id+'&access_token='+token).json()
-                    except:
-                        time.sleep(1)
-                        duyetxu = requests.post('https://traodoisub.com/api/coin/?type=TIKTOK_LIKE_CACHE&id='+id+'&access_token='+token).json()
+                    duyetxu = requests.post('https://traodoisub.com/api/coin/?type=TIKTOK_LIKE_CACHE&id='+id+'&access_token='+token).json()
                     t = t + 1
                     now = datetime.now()
                     current_time = now.strftime("%H:%M:%S")
                     print(xlacay+"["+trang+"LMH_TOOL"+xlacay+"] "+" ["+vang+str(t)+xlacay+"] "+" ["+trang+current_time+xlacay+"] "+" ["+vang+id+xlacay+"]")
                     tong = duyetxu['cache']
                     if (t%quantity == 0):
-                        try:
-                            getxu = requests.post("https://traodoisub.com/api/coin/?type=TIKTOK_LIKE&id=TIKTOK_LIKE_API&access_token="+token).json()
-                            tongxu = tongxu + int((getxu['data']['msg'].split('+')[1]).split(' Xu')[0])
-                        except:
-                            continue
+                        getxu = requests.post("https://traodoisub.com/api/coin/?type=TIKTOK_LIKE&id=TIKTOK_LIKE_API&access_token="+token).json()
+                        tongxu = tongxu + int((getxu['data']['msg'].split('+')[1]).split(' Xu')[0])
                         print(xlacay+"═══════════════════════════════════════════════════════════════════════")
                         print(syan+"ĐANG AUTO TIKTOK: "+trang+uniqueID+xlacay+" ║ "+trang+str(getxu['data']['msg'])+xlacay+" ║ "+syan+"TOTAL: "+vang+str(tongxu)+xlacay+" ║ "+syan+"TỔNG XU: "+trang+str(getxu['data']['xu']))
                         print(xlacay+"═══════════════════════════════════════════════════════════════════════")
@@ -191,6 +175,8 @@ if (chnick['success'] == 200):
                             break
                     else:
                         continue
+            except:
+                continue
         elif (nv == 2):
             getjob = requests.get('https://traodoisub.com/api/?fields=tiktok_follow&access_token='+token,headers=head).json()
             try:
@@ -198,20 +184,11 @@ if (chnick['success'] == 200):
                 if (loi == 8):
                     print(do+str(getjob['error']))
                     quit()
-            except:
                 if (getjob == []):
                     print(do+"TẠM THỜI HẾT JOB                        ",end="\r")
                     time.sleep(2)
                     continue
-                try:
-                    list = len(getjob['data'])
-                except:
-                    getjob = requests.get('https://traodoisub.com/api/?fields=tiktok_follow&access_token='+token,headers=head).json()
-                    list = len(getjob['data'])
-                    if (getjob == []):
-                        print(do+"TẠM THỜI HẾT JOB                        ",end="\r")
-                        time.sleep(10)
-                        continue
+                list = len(getjob['data'])
                 for i in range(list):
                     id = getjob['data'][i]['id']
                     link = getjob['data'][i]['link']
@@ -221,23 +198,15 @@ if (chnick['success'] == 200):
                     for i in range(delay,-1,-1):
                         print(xlacay+'VUI LÒNG CHỜ '+do+str(i)+xlacay+" GIÂY     ",end="\r")
                         time.sleep(1)
-                    try:
-                        duyetxu = requests.post('https://traodoisub.com/api/coin/?type=TIKTOK_FOLLOW_CACHE&id='+id+'&access_token='+token).json()
-                    except:
-                        time.sleep(1)
-                        duyetxu = requests.post('https://traodoisub.com/api/coin/?type=TIKTOK_FOLLOW_CACHE&id='+id+'&access_token='+token).json()
+                    duyetxu = requests.post('https://traodoisub.com/api/coin/?type=TIKTOK_FOLLOW_CACHE&id='+id+'&access_token='+token).json()
                     t = t + 1
                     now = datetime.now()
                     current_time = now.strftime("%H:%M:%S")
                     print(xlacay+"["+trang+"LMH_TOOL"+xlacay+"] "+" ["+vang+str(t)+xlacay+"] "+" ["+trang+current_time+xlacay+"] "+" ["+vang+id+xlacay+"]")
                     tong = duyetxu['cache']
                     if (t%quantity == 0):
-                        try:
-                            getxu = requests.post("https://traodoisub.com/api/coin/?type=TIKTOK_FOLLOW&id=TIKTOK_FOLLOW_API&access_token="+token).json()
-                            print(getxu)
-                            tongxu = tongxu + int((getxu['data']['msg'].split('+')[1]).split(' Xu')[0])
-                        except:
-                            continue
+                        getxu = requests.post("https://traodoisub.com/api/coin/?type=TIKTOK_FOLLOW&id=TIKTOK_FOLLOW_API&access_token="+token).json()
+                        tongxu = tongxu + int((getxu['data']['msg'].split('+')[1]).split(' Xu')[0])
                         print(xlacay+"═══════════════════════════════════════════════════════════════════════")
                         print(syan+"ĐANG AUTO TIKTOK: "+trang+uniqueID+xlacay+" ║ "+trang+str(getxu['data']['msg'])+xlacay+" ║ "+syan+"TOTAL: "+vang+str(tongxu)+xlacay+" ║ "+syan+"TỔNG XU: "+trang+str(getxu['data']['xu']))
                         print(xlacay+"═══════════════════════════════════════════════════════════════════════")
@@ -246,6 +215,8 @@ if (chnick['success'] == 200):
                             break
                     else:
                         continue
+            except:
+                continue
         if (loi == 1):
             print(do+'TÀI KHOẢN TIKTOK CỦA BẠN CÒN ỔN KHÔNG!!!  ')
             print(xlacay+"["+do+"1"+xlacay+"]. Chọn lại nhiệm vụ")

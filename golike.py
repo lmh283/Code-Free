@@ -74,51 +74,6 @@ def login(author,t):
         return 1
 os.system("cls" if os.name == "nt" else "clear")
 inten()
-# print(xlacay+"["+do+"1"+xlacay+"]. Đăng nhập tài khoản GOLIKE lần trước   ")
-# print(xlacay+"["+do+"2"+xlacay+"]. Đăng nhập tài khoản GOLIKE mới         ")
-# select = int(input(xlacay+"Nhập "+do+"1"+xlacay+" hoặc "+do+"2"+xlacay+":  "+do))
-# if (select == 2):
-#     authorization = input(xduong+"Nhập Authorization: "+trang)
-#     t = input(xduong+"Nhập T: "+trang)
-#     account = login(authorization,t)
-#     head_login = {
-#         "Accept": "application/json, text/plain, */*",
-#         "Accept-Language": "vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5",
-#         "Authorization": authorization,
-#         "Content-Type": "application/json;charset=utf-8",
-#         "Origin": "https://app.golike.net",
-#         "Referer": "https://app.golike.net/",
-#         'Sec-Ch-Ua':'"Not/A)Brand";v="99", "Google Chrome";v="115", "Chromium";v="115"',
-#         'Sec-Ch-Ua-Mobile':'?0',
-#         'Sec-Ch-Ua-Platform':'"Windows"',
-#         'Sec-Fetch-Dest':'empty',
-#         'Sec-Fetch-Mode':'cors',
-#         'Sec-Fetch-Site':'same-site',
-#         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36",
-#         "T": t
-#     }
-# elif (select == 1):
-#     f = open("taikhoan.txt","r")
-#     tam = f.readline()
-#     authorization = tam.split("|")[0]
-#     t = tam.split("|")[1]
-#     head_login = {
-#         "Accept": "application/json, text/plain, */*",
-#         "Accept-Language": "vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5",
-#         "Authorization": authorization,
-#         "Content-Type": "application/json;charset=utf-8",
-#         "Origin": "https://app.golike.net",
-#         "Referer": "https://app.golike.net/",
-#         'Sec-Ch-Ua':'"Not/A)Brand";v="99", "Google Chrome";v="115", "Chromium";v="115"',
-#         'Sec-Ch-Ua-Mobile':'?0',
-#         'Sec-Ch-Ua-Platform':'"Windows"',
-#         'Sec-Fetch-Dest':'empty',
-#         'Sec-Fetch-Mode':'cors',
-#         'Sec-Fetch-Site':'same-site',
-#         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36",
-#         "T": t
-#     }
-#     account = login(authorization,t)
 def NhapGoLike():
     while True:
         if os.path.exists('authorization.txt'):
@@ -213,7 +168,6 @@ head_login = {
 while True:
     time.sleep(1)
     print(syan+'ĐANG LẤY NHIỆM VỤ TIKTOK                        ',end="\r")
-    # try:
     while True:
         try:
             time.sleep(1)
@@ -308,6 +262,12 @@ while True:
     except:
         print(do+"JOB LỖI, BỎ QUA NHIỆM VỤ                                    ",end = "\r")
         dt1 = f'{{"account_id": "{str(listid[stt])}","ads_id": "{str(id_job)}","type": "{type_acction}","object_id": "{object_id}"}}'
-        skipjob = requests.post('https://gateway.golike.net/api/advertising/publishers/tiktok/skip-jobs',data=dt1,headers=hd).json()
-        if (skipjob['status'] == 200):
-            print(do+"BÁO LỖI THÀNH CÔNG                                     ",end="\r")
+        try:
+            skipjob = requests.post('https://gateway.golike.net/api/advertising/publishers/tiktok/skip-jobs',data=dt1,headers=hd).json()
+            if (skipjob['status'] == 200):
+                print(do+"BÁO LỖI THÀNH CÔNG                                     ",end="\r")
+        except:
+            time.sleep(2)
+            skipjob = requests.post('https://gateway.golike.net/api/advertising/publishers/tiktok/skip-jobs',data=dt1,headers=hd).json()
+            if (skipjob['status'] == 200):
+                print(do+"BÁO LỖI THÀNH CÔNG                                     ",end="\r")
