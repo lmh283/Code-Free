@@ -41,12 +41,16 @@ class TDS:
             duyet = requests.post(f'https://traodoisub.com/api/coin/?type=TIKTOK_FOLLOW_CACHE&id={idnv}&access_token={self.token}').json()
         return duyet['cache']
     def NhanXu(self):
-        getxu = requests.post(f'https://traodoisub.com/api/coin/?type=TIKTOK_FOLLOW&id=TIKTOK_FOLLOW_API&access_token={self.token}').json()
+        try:
+            getxu = requests.post(f'https://traodoisub.com/api/coin/?type=TIKTOK_FOLLOW&id=TIKTOK_FOLLOW_API&access_token={self.token}').json()
+        except:
+            time.sleep(2)
+            getxu = requests.post(f'https://traodoisub.com/api/coin/?type=TIKTOK_FOLLOW&id=TIKTOK_FOLLOW_API&access_token={self.token}').json()
         if 'data' in getxu:
                 print(getxu)
                 self.tongxu = self.tongxu + int((getxu['data']['msg'].split('+')[1]).split(' Xu')[0])
                 print(xlacay+"═══════════════════════════════════════════════════════════════════════")
-                print(syan+"ĐANG AUTO TIKTOK: "+trang+name+xlacay+" ║ "+trang+str(getxu['data']['msg'])+xlacay+" ║ "+syan+"TOTAL: "+vang+str(self.tongxu)+xlacay+" ║ "+syan+"TỔNG XU: "+trang+str(getxu['data']['xu']))
+                print(syan+"ĐANG AUTO TIKTOK: "+trang+TDS.name+xlacay+" ║ "+trang+str(getxu['data']['msg'])+xlacay+" ║ "+syan+"TOTAL: "+vang+str(self.tongxu)+xlacay+" ║ "+syan+"TỔNG XU: "+trang+str(getxu['data']['xu']))
                 print(xlacay+"═══════════════════════════════════════════════════════════════════════")
                 if ('+0 Xu' in getxu['data']['msg']):
                     print(f'{xlacay}Acc tiktok bạn còn ổn không   ')
@@ -62,7 +66,11 @@ class TDS:
     def LamJob(self):
         self.NhanXu()
         while True:
-            getjob = requests.get(f'https://traodoisub.com/api/?fields=tiktok_follow&access_token={self.token}').json()
+            try:
+                getjob = requests.get(f'https://traodoisub.com/api/?fields=tiktok_follow&access_token={self.token}').json()
+            except:
+                time.sleep(2)
+                getjob = requests.get(f'https://traodoisub.com/api/?fields=tiktok_follow&access_token={self.token}').json()
             if 'countdown' in getjob:
                 countdown = getjob['countdown']
                 for i in range(int(countdown)+20, 0, -1):
@@ -138,7 +146,7 @@ def SaveAcc():
         elif not os.path.exists('token_tds_tiktok.txt'):
             while True:
                 tk = input(xlacay+"NHẬP TOKEN TDS: "+trang)
-                login = (tk)
+                login = LogTDS(tk)
                 if "error" in login:
                     print(do+"TOKEN TDS KO CHÍNH XÁC")
                     continue
@@ -174,7 +182,7 @@ print(syan+"SỐ XU HIỆN TẠI: "+trang+xu)
 print(syan+"SỐ XU DIE: "+do+xudie)
 print(vang+"═══════════════════════════════════════════════════════════════════════")
 idacc = input(xlacay+"Nhập user tiktok cần auto: "+trang)
-apitds = TDS(token,idacc)
+apitds = TDS(token)
 apitds.CauHinh(idacc)
 delay = int(input(f'{xlacay}Nhập delay làm nhiệm vụ: {trang}'))
 apitds.LamJob()
