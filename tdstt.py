@@ -21,13 +21,12 @@ vang="\033[1;93m"
 syan="\033[1;36m"
 class TDS:
     name = ''
-    def __init__(self, token, idacc):
+    def __init__(self, token):
         self.token = token
-        self.idacc = idacc
         self.dem = 0
         self.tongxu = 0
-    def CauHinh(self):
-        chnick = requests.post(f"https://traodoisub.com/api/?fields=tiktok_run&id={self.idacc}&access_token={self.token}").json()
+    def CauHinh(self,idacc):
+        chnick = requests.post(f"https://traodoisub.com/api/?fields=tiktok_run&id={idacc}&access_token={self.token}").json()
         if 'error' in chnick:
             print(f'{do}Cấu hình thất bại!!!   ',end='\r')
             exit()
@@ -45,6 +44,14 @@ class TDS:
                 print(xlacay+"═══════════════════════════════════════════════════════════════════════")
                 print(syan+"ĐANG AUTO TIKTOK: "+trang+name+xlacay+" ║ "+trang+str(getxu['data']['msg'])+xlacay+" ║ "+syan+"TOTAL: "+vang+str(self.tongxu)+xlacay+" ║ "+syan+"TỔNG XU: "+trang+str(getxu['data']['xu']))
                 print(xlacay+"═══════════════════════════════════════════════════════════════════════")
+                if ('+0 Xu' in getxu['data']['msg']):
+                    print(f'{xlacay}Acc tiktok bạn còn ổn không   ')
+                    print(f'{xlacay}[{do}1{xlacay}]. Thay acc tiktok')
+                    print(f'{xlacay}[{do}2{xlacay}]. Enter để tiếp tục')
+                    chon = input(xlacay+'Nhập lựa chọn: '+trang)
+                    if (chon == '1'):
+                        idthay = input(xlacay+"Nhập user tiktok cần auto: "+trang)
+                        self.CauHinh(idthay)
         else:
             print(f"{do}Lỗi nhận xu!!!    ")
             print(getxu)
@@ -68,7 +75,7 @@ class TDS:
                     print(xlacay+"["+trang+"LMH_TOOL"+xlacay+"] "+" ["+vang+str(self.dem)+xlacay+"] "+" ["+trang+current_time+xlacay+"] "+" ["+vang+idnv+xlacay+"]")
                     dl(delay)
                     self.DuyetNV(idnv)
-                    if (self.dem%10 == 0):
+                    if (self.dem%15 == 0):
                         self.NhanXu()
                         
 def inten():
@@ -89,7 +96,7 @@ def inten():
     time.sleep(0.02)
     print(f"{do}║  {xlacay}『{trang}H2M{xlacay}』 {syan}▶ {hong}GitHub: {trang}lmh283                          {do}║ ")
     time.sleep(0.02)
-    print(f"{do}║  {xlacay}『{trang}H2M{xlacay}』 {syan}▶ {xlacay}Profile: {syan}lmhtool.ezzeblog.com   {do}║")
+    print(f"{do}║  {xlacay}『{trang}H2M{xlacay}』 {syan}▶ {xlacay}Profile: {syan}lmhtool.ezzeblog.com          {do}║")
     time.sleep(0.02)
     print(f"{do}║  {xlacay}『{trang}H2M{xlacay}』 {syan}▶ {xlacay}IP hiện tại: {trang}{IP_addres}              {do}║")
     time.sleep(0.02)
