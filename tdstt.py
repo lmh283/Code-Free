@@ -34,7 +34,11 @@ class TDS:
             TDS.name = chnick['data']["uniqueID"]
             print(f"{xlacay}Cấu hình thành công     ")
     def DuyetNV(self,idnv):
-        duyet = requests.post(f'https://traodoisub.com/api/coin/?type=TIKTOK_FOLLOW_CACHE&id={idnv}&access_token={self.token}').json()
+        try:
+            duyet = requests.post(f'https://traodoisub.com/api/coin/?type=TIKTOK_FOLLOW_CACHE&id={idnv}&access_token={self.token}').json()
+        except:
+            time.sleep(2)
+            duyet = requests.post(f'https://traodoisub.com/api/coin/?type=TIKTOK_FOLLOW_CACHE&id={idnv}&access_token={self.token}').json()
         return duyet['cache']
     def NhanXu(self):
         getxu = requests.post(f'https://traodoisub.com/api/coin/?type=TIKTOK_FOLLOW&id=TIKTOK_FOLLOW_API&access_token={self.token}').json()
