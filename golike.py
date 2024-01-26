@@ -221,7 +221,7 @@ while True:
         else:
             os.system(f"start {link}" if os.name == "nt" else f"termux-open {link}")
         delay = random.randint(dlmin,dlmax)
-        for i in range(10,0,-1):
+        for i in range(delay,0,-1):
             print(syan+'VUI LÒNG THỰC HIỆN '+type_acction+' TRONG '+trang+str(i)+syan+' GIÂY                                  ',end= "\r")
             time.sleep(1)
         dt = f'{{"account_id": "{str(listid[stt])}","ads_id": "{str(id_job)}","async": true,"data": null}}'
